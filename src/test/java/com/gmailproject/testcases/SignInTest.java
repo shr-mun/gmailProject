@@ -29,13 +29,13 @@ public class SignInTest {
 		
 		
 	}
-	//@Test(priority=1)
+	@Test(priority=1)
 	public void verifyGmailLoginPageTest(){
 		Assert.assertTrue(driver.findElement(By.xpath("//span[contains(text(),'Create account')]")).isDisplayed());
 		
 		
 	}
-	//@Test(priority=2)
+	@Test(priority=2)
 	public void gmailSignInTest() throws InterruptedException{
 		driver.findElement(By.id("identifierId")).clear();
 		driver.findElement(By.id("identifierId")).sendKeys("shrija.jain1@gmail.com");
@@ -121,8 +121,9 @@ public class SignInTest {
 		//System.out.println(bodyArea.getText());
 		Assert.assertEquals(body,bodyArea.getText(),"Email body should be  same");
 		//sign out from gmail
-		WebDriverWait wait=new WebDriverWait(driver,20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='gb_Ba gbii']")));
+		//WebDriverWait wait=new WebDriverWait(driver,40);
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='gb_Ba gbii']")));
+		Thread.sleep(5000);
 		WebElement profileBtn=driver.findElement(By.xpath("//span[@class='gb_Ba gbii']"));
 		profileBtn.click();
 		WebElement signOutBtn=driver.findElement(By.xpath("//a[contains(text(),'Sign out')]"));
@@ -130,8 +131,8 @@ public class SignInTest {
 	}
 	
 	
-	//@AfterMethod
-	//public void teardown(){
-	//	driver.quit();
-	//}
+	@AfterMethod
+	public void teardown(){
+		driver.quit();
+	}
 }
